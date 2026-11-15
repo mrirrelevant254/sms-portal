@@ -14,19 +14,25 @@ class UnitRegistrationController extends Controller
         $student = $request->user()->student;
         $semester = Semester::current();
 
-        // Find units for the student's programme, year, and semester
+        // Find units for the student's specific programme, year, and semester of study
         $availableUnits = Unit::where('programme_id', $student->programme_id)
             ->where('year_no', $student->year_of_study)
-            // ->where('semester_no', $student->semester_of_study) // <-- Temporarily commented out
+            ->where('semester_no', $student->semester_of_study)
             ->get();
 
-        // Find IDs of units the student has already registered for
+        // Check which ones the student has already registered for
         $registeredUnitIds = $student->unitRegistrations()
             ->where('semester_id', $semester->id)
             ->pluck('unit_id')
             ->toArray();
 
-        return view('student.units.index', compact('availableUnits', 'registeredUnitIds', 'semester'));
+        // Pass the student's semester to the view instead of the system semester
+        return view('student.units.index', [
+            'availableUnits' => $availableUnits,
+            'registeredUnitIds' => $registeredUnitIds,
+            'semester' => $semester,
+            'studentSemester' => $student->semester_of_study, // Add this
+        ]);
     }
 
     public function store(Request $request)
