@@ -12,4 +12,6 @@ class Unit extends Model
     {
         return $this->belongsTo(Programme::class);
     }
+
+    public function timetableSlots() { return $this->hasMany(TimetableSlot::class); }
 }

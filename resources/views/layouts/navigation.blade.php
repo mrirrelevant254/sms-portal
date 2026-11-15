@@ -37,8 +37,8 @@
                                 <a href="{{ route('student.semester-report.index') }}" class="block px-4 py-2 text-sm text-black hover:bg-green-300">Semester Reporting</a>
                                 <a href="{{ route('student.units.index') }}" class="block px-4 py-2 text-sm text-black hover:bg-green-300">Unit Registration</a>
                                 <a href="{{ route('student.transcript.index') }}" class="block px-4 py-2 text-sm text-black hover:bg-green-300">Provisional Transcript</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-green-300">Supplementary & Special Exams</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-green-300">Timetable</a>
+                                <a href="{{ route('student.supplementary.index') }}" class="block px-4 py-2 text-sm text-black hover:bg-green-300">Supplementary & Special Exams</a>
+                                <a href="{{ route('student.timetable.index') }}" class="block px-4 py-2 text-sm text-black hover:bg-green-300">Timetable</a>
                                 <a href="{{ route('student.exam-card.index') }}" class="block px-4 py-2 text-sm text-black hover:bg-green-300">Exam Card</a>
                             </div>
                         </div>
@@ -66,6 +66,7 @@
                     @role('admin|registrar')
                         <a href="{{ route('admin.students.index') }}" class="px-3 py-2 text-sm font-medium text-black hover:text-gray-600 rounded-md">Manage Students</a>
                         <a href="{{ route('admin.requests.index') }}" class="px-3 py-2 text-sm font-medium text-black hover:text-gray-600 rounded-md">Student Requests</a>
+                        <a href="{{ route('admin.timetable.index') }}" class="px-3 py-2 text-sm font-medium text-black hover:text-gray-600 rounded-md">Timetable</a>
                     @endrole
 
                     {{-- LECTURER MENUS --}}

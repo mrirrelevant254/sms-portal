@@ -9,8 +9,11 @@ use App\Http\Controllers\Student\HostelBookingController;
 use App\Http\Controllers\Student\ExamCardController;
 use App\Http\Controllers\Student\TranscriptController;
 use App\Http\Controllers\Student\SemesterReportController;
+use App\Http\Controllers\Student\TimetableController;
+use App\Http\Controllers\Student\SupplementaryExamController;
 use App\Http\Controllers\Admin\RequestApprovalController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\TimetableController as AdminTimetableController;
 use App\Http\Controllers\Lecturer\GradeController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +58,9 @@ Route::middleware(['auth'])->prefix('student')->group(function () {
     Route::get('/exam-card/download', [ExamCardController::class, 'download'])->name('student.exam-card.download');
     Route::get('/transcript', [TranscriptController::class, 'show'])->name('student.transcript.index');
     Route::get('/transcript/download', [TranscriptController::class, 'download'])->name('student.transcript.download');
+    Route::get('/timetable', [TimetableController::class, 'index'])->name('student.timetable.index');
+    Route::get('/supplementary', [SupplementaryExamController::class, 'index'])->name('student.supplementary.index');
+    Route::post('/supplementary', [SupplementaryExamController::class, 'store'])->name('student.supplementary.store');
     
     // Semester Reporting
     Route::get('/semester-report', [SemesterReportController::class, 'index'])->name('student.semester-report.index');
@@ -67,6 +73,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/students/create', [StudentController::class, 'create'])->name('admin.students.create');
     Route::post('/students', [StudentController::class, 'store'])->name('admin.students.store');
     
+    // Timetable Management
+    Route::get('/timetable', [AdminTimetableController::class, 'index'])->name('admin.timetable.index');
+    Route::post('/timetable', [AdminTimetableController::class, 'store'])->name('admin.timetable.store');
+
     // Request Approval
     Route::get('/requests', [RequestApprovalController::class, 'index'])->name('admin.requests.index');
     Route::post('/requests/{studentRequest}/process', [RequestApprovalController::class, 'process'])->name('admin.requests.process');
@@ -75,6 +85,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 Route::middleware(['auth'])->prefix('lecturer')->group(function () {
     Route::get('/grades', [GradeController::class, 'index'])->name('lecturer.grades.index');
     Route::post('/grades/{registration}', [GradeController::class, 'store'])->name('lecturer.grades.store');
-});
+}); // <-- Added the missing closing brace here
 
 require __DIR__.'/auth.php';

@@ -11,9 +11,24 @@
     <nav class="bg-blue-900 border-b border-blue-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-white font-bold text-lg">Lecturer Portal</span>
+                <!-- Left Side: Logo & Links -->
+                <div class="flex items-center space-x-6">
+                    <span class="text-white font-bold text-lg">
+                        @role('admin|registrar')
+                            Admin Portal
+                        @else
+                            Lecturer Portal
+                        @endrole
+                    </span>
+                    
+                    @role('admin|registrar')
+                        <a href="{{ route('admin.students.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Manage Students</a>
+                        <a href="{{ route('admin.timetable.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Manage Timetable</a>
+                        <a href="{{ route('admin.requests.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Student Requests</a>
+                    @endrole
                 </div>
+                
+                <!-- Right Side: User Name & Logout -->
                 <div class="flex items-center">
                     <span class="text-white text-sm me-4">{{ auth()->user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}">
