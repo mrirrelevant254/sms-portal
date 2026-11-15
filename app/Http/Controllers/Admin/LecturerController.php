@@ -11,7 +11,6 @@ class LecturerController extends Controller
 {
     public function index()
     {
-        // Get all users who have the 'lecturer' role
         $lecturers = User::role('lecturer')->get();
         return view('admin.lecturers.index', compact('lecturers'));
     }
