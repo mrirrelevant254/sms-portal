@@ -43,5 +43,14 @@ class DemoDataSeeder extends Seeder
                 'status' => 'active',
             ]
         );
+
+        $hostel = \App\Models\Hostel::firstOrCreate(['name' => 'Nyayo Hostel'], [
+            'gender' => 'male', 
+            'location' => 'Main Campus'
+        ]);
+        
+        $hostel->rooms()->firstOrCreate(['room_no' => 'A-101'], ['capacity' => 4, 'fee' => 15000]);
+        $hostel->rooms()->firstOrCreate(['room_no' => 'A-102'], ['capacity' => 4, 'fee' => 15000]);
+        $hostel->rooms()->firstOrCreate(['room_no' => 'B-201'], ['capacity' => 2, 'fee' => 25000]);
     }
 }
