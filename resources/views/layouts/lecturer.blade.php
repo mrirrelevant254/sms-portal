@@ -21,11 +21,12 @@
                         @endrole
                     </span>
                     
-                    @role('admin|registrar')
-                        <a href="{{ route('admin.students.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Manage Students</a>
-                        <a href="{{ route('admin.timetable.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Manage Timetable</a>
-                        <a href="{{ route('admin.requests.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Student Requests</a>
-                    @endrole
+                        @role('admin|registrar')
+                            <a href="{{ route('admin.students.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Manage Students</a>
+                            <a href="{{ route('admin.lecturers.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Manage Lecturers</a>
+                            <a href="{{ route('admin.timetable.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Manage Timetable</a>
+                            <a href="{{ route('admin.requests.index') }}" class="text-white hover:text-gray-300 text-sm font-medium">Student Requests</a>
+                        @endrole
                 </div>
                 
                 <!-- Right Side: User Name & Logout -->

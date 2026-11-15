@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TimetableController as AdminTimetableController;
 use App\Http\Controllers\Lecturer\GradeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\LecturerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,6 +73,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/students', [StudentController::class, 'index'])->name('admin.students.index');
     Route::get('/students/create', [StudentController::class, 'create'])->name('admin.students.create');
     Route::post('/students', [StudentController::class, 'store'])->name('admin.students.store');
+    Route::get('/lecturers', [LecturerController::class, 'index'])->name('admin.lecturers.index');
+    Route::get('/lecturers/create', [LecturerController::class, 'create'])->name('admin.lecturers.create');
+    Route::post('/lecturers', [LecturerController::class, 'store'])->name('admin.lecturers.store');
     
     // Timetable Management
     Route::get('/timetable', [AdminTimetableController::class, 'index'])->name('admin.timetable.index');
